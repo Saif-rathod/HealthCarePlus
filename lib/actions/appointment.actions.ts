@@ -134,8 +134,9 @@ export const updateAppointment = async ({
     );
 
     if (!updatedAppointment) throw Error;
-
-    const smsMessage = `Greetings from CarePulse. ${type === "schedule" ? `Your appointment is confirmed for ${formatDateTime(appointment.schedule!, timeZone).dateTime} with Dr. ${appointment.primaryPhysician}` : `We regret to inform that your appointment for ${formatDateTime(appointment.schedule!, timeZone).dateTime} is cancelled. Reason:  ${appointment.cancellationReason}`}.`;
+    const location = "https://maps.app.goo.gl/qFqi73srDALDWW2x5";
+    const smsMessage = `Greetings from HealthCare+. ${type === "schedule" ? `Your appointment is confirmed for ${formatDateTime(appointment.schedule!, timeZone).dateTime} with Dr. ${appointment.primaryPhysician}. Get Directions : ${location} ` :
+                       `We regret to inform that your appointment for ${formatDateTime(appointment.schedule!, timeZone).dateTime} is cancelled. Reason:  ${appointment.cancellationReason} . Get Directions : ${location}`}.`;
     await sendSMSNotification(userId, smsMessage);
 
     revalidatePath("/admin");
