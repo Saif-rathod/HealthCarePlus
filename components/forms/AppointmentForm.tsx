@@ -53,68 +53,68 @@ export const AppointmentForm = ({
     },
   });
 
-  const onSubmit = async (
-    values: z.infer<typeof AppointmentFormValidation>
-  ) => {
-    setIsLoading(true);
+ const onSubmit = async (values: z.infer<typeof AppointmentFormValidation>) => {
+   setIsLoading(true);
 
-    let status;
-    switch (type) {
-      case "schedule":
-        status = "scheduled";
-        break;
-      case "cancel":
-        status = "cancelled";
-        break;
-      default:
-        status = "pending";
-    }
+   let status;
+   switch (type) {
+     case "schedule":
+       status = "scheduled";
+       break;
+     case "cancel":
+       status = "cancelled";
+       break;
+     default:
+       status = "pending";
+   }
 
-    try {
-      if (type === "create" && patientId) {
-        const appointment = {
-          userId,
-          patient: patientId,
-          primaryPhysician: values.primaryPhysician,
-          schedule: new Date(values.schedule),
-          reason: values.reason!,
-          status: status as Status,
-          note: values.note,
-        };
+   try {
+     if (type === "create" && patientId) {
+       const appointment = {
+         userId,
+         patient: patientId,
+         primaryPhysician: values.primaryPhysician,
+         schedule: new Date(values.schedule),
+         reason: values.reason!,
+         status: status as Status,
+         note: values.note,
+       };
 
-        const newAppointment = await createAppointment(appointment);
+       const newAppointment = await createAppointment(appointment);
 
-        if (newAppointment) {
-          form.reset();
-          router.push(
-            `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
-          );
-        }
-      } else {
-        const appointmentToUpdate = {
-          userId,
-          appointmentId: appointment?.$id!,
-          appointment: {
-            primaryPhysician: values.primaryPhysician,
-            schedule: new Date(values.schedule),
-            status: status as Status,
-            cancellationReason: values.cancellationReason,
-          },
-          type,
-        };
+       if (newAppointment) {
+         form.reset();
+         router.push(
+           `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
+         );
+       }
+     } else {
+       const appointmentToUpdate = {
+         userId,
+         appointmentId: appointment?.$id!,
+         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Dynamically setting the timeZone
+         appointment: {
+           primaryPhysician: values.primaryPhysician,
+           schedule: new Date(values.schedule),
+           status: status as Status,
+           cancellationReason: values.cancellationReason,
+         },
+         type,
+       };
 
-        const updatedAppointment = await updateAppointment(appointmentToUpdate);
+       const updatedAppointment = await updateAppointment(appointmentToUpdate);
 
-        if (updatedAppointment) {
-          setOpen && setOpen(false);
-          form.reset();
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    setIsLoading(false);
-  };
+       if (updatedAppointment) {
+         setOpen && setOpen(false);
+         form.reset();
+       }
+     }
+   } catch (error) {
+     console.log(error);
+   }
+   setIsLoading(false);
+ };
+
 
   let buttonLabel;
   switch (type) {
