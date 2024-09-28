@@ -37,11 +37,14 @@ If you're getting started and need assistance or face any bugs, join our active 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
 - Next.js
-- Appwrite
+- Appwrite 
+   - Message : Twilio
+   - Email : Mailgun
 - Typescript
 - TailwindCSS
 - ShadCN
-- Twilio
+- Vercel
+- Github
 
 ## <a name="features">🔋 Features</a>
 
@@ -80,7 +83,7 @@ Make sure you have the following installed on your machine:
 **Cloning the Repository**
 
 ```bash
-git clone https://github.com/adrianhajdin/healthcare.git
+git clone https://github.com/sahil-1610/HealthCarePlus.git
 cd healthcare
 ```
 
