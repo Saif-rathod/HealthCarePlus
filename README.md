@@ -1,4 +1,4 @@
-<div align="center">
+<div>
   <br />
     <a>
       <img src="https://github.com/adrianhajdin/healthcare/assets/151519281/a7dd73b6-93de-484d-84e0-e7f4e299167b" alt="Project Banner">
@@ -991,5 +991,3 @@ Public assets used in the project can be found [here]
 ## <a name="Contributor">🚀Contributor</a>
 Sahil Tiwari   <br/>
 Saif Rathod
-
-#
