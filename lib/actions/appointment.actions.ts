@@ -141,10 +141,10 @@ export const updateAppointment = async ({
       type === "schedule"
         ? `Your appointment is confirmed for ${
             formatDateTime(appointment.schedule!, timeZone).dateTime
-          } with Dr. ${appointment.primaryPhysician}. Get Directions: ${location}`
+          } with Dr. ${appointment.primaryPhysician}.  Get Directions:  ${location}`
         : `We regret to inform you that your appointment for ${
             formatDateTime(appointment.schedule!, timeZone).dateTime
-          } is cancelled. Reason: ${appointment.cancellationReason}.`
+          } is cancelled.  Reason:  ${appointment.cancellationReason}.`
     }`;
 
     // Send both SMS and Email notifications
