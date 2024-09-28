@@ -9,6 +9,8 @@ import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
 const AdminPage = async () => {
   const appointments = await getRecentAppointmentList();
 
+  console.log(appointments); // Log to verify structure
+
   return (
     <div className="mx-auto flex max-w-7xl flex-col space-y-14">
       <header className="admin-header">
@@ -34,27 +36,35 @@ const AdminPage = async () => {
         </section>
 
         <section className="admin-stat">
-          <StatCard
-            type="appointments"
-            count={appointments.scheduledCount}
-            label="Scheduled appointments"
-            icon={"/assets/icons/appointments.svg"}
-          />
-          <StatCard
-            type="pending"
-            count={appointments.pendingCount}
-            label="Pending appointments"
-            icon={"/assets/icons/pending.svg"}
-          />
-          <StatCard
-            type="cancelled"
-            count={appointments.cancelledCount}
-            label="Cancelled appointments"
-            icon={"/assets/icons/cancelled.svg"}
-          />
+          {appointments ? (
+            <>
+              <StatCard
+                type="appointments"
+                count={appointments.scheduledCount || 0}
+                label="Scheduled appointments"
+                icon={"/assets/icons/appointments.svg"}
+              />
+              <StatCard
+                type="pending"
+                count={appointments.pendingCount || 0}
+                label="Pending appointments"
+                icon={"/assets/icons/pending.svg"}
+              />
+              <StatCard
+                type="cancelled"
+                count={appointments.cancelledCount || 0}
+                label="Cancelled appointments"
+                icon={"/assets/icons/cancelled.svg"}
+              />
+            </>
+          ) : (
+            <p>No appointments available</p>
+          )}
         </section>
 
-        <DataTable columns={columns} data={appointments.documents} />
+        {appointments && (
+          <DataTable columns={columns} data={appointments.documents} />
+        )}
       </main>
     </div>
   );

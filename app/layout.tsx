@@ -27,6 +27,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="favicon.ico" />
+        <link rel="apple-touch-icon" href="favicon.ico" />
+        <meta name="theme-color" content="#000000" />
+      {/*  <meta name="description" content={metadata.description} /> */}
+        <title>HealthCare+</title>
+      </head>
       <body
         className={cn(
           "min-h-screen bg-dark-300 font-sans antialiased",
