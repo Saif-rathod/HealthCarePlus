@@ -49,7 +49,7 @@ If you're getting started and need assistance or face any bugs, join our active 
 
 ## <a name="features">🔋 Features</a>
 
-👉 **Register as a Patient**: Users can sign up and create a personal profile as a patient.
+👉 **Register as a Patient**: Users can sign up and create a personal profile as an amazing patient.
 
 👉 **Book a New Appointment with Doctor**: Patients can schedule appointments with doctors at their convenience and can book multiple appointments.
 
